@@ -4,10 +4,7 @@ import com.picsartacademy.leetcodeclone.domain.Program;
 import com.picsartacademy.leetcodeclone.service.Compiler;
 import com.picsartacademy.leetcodeclone.service.JSONFileChecker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -24,23 +21,15 @@ public class ApiController {
     }
 
     @PostMapping("/test")
-    public String test(@ModelAttribute("script") String script, @ModelAttribute("lang") String lang) {
-        Program program = new Program(script, lang);
-        compiler.compile(program, "src/main/resources/scripts/example.py");//changeso that it returns json file path
-        if (jsonFileChecker.checkJsonFile(jsonPath)){
-            return jsonPath;
-        } else {
-            return "data/erroroutput.json";
-        }
+    public String test(@RequestBody Program program) {
+        compiler.compile(program);//changeso that it returns json file path
+        return "date/output.json";
     }
 
     @PostMapping("/submit")
-    public String submit(@ModelAttribute("script") String script, @ModelAttribute("lang") String lang) {
-        Program program = new Program(script, lang);
-        compiler.compile(program, pythonPath);
-
-        String jsonPath = ""; //Tyomi func
-        return jsonPath;
+    public String submit(@RequestBody Program program) {
+        compiler.compile(program);//changeso that it returns json file path
+        return null;
     }
 
 }

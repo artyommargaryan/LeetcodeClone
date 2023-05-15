@@ -1,1 +1,1 @@
-{"file_content": "console.log(\"Hello, world!\");", "status": "success"}
+{"file_content": "console.log('Hello, world!');", "status": "success"}

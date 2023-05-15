@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 public class RunnerTest {
     @Test
     public void runTest() {
-        Runner runner = new Runner();
+        Runner runner = new Runner(new JSONFileChecker());
         String solutionPath = "data/Solution.js";
-        runner.run("src/main/resources/scripts/example.py", solutionPath);
+        runner.run(solutionPath);
     }
 }
